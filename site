@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meus Objetivos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .timer {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌟 Meus Objetivos de Vida</h1>
+
+  <div class="container">
+    
+    <div class="card">
+      <h2>🎓 Entrar na PUCPR</h2>
+      <div class="timer" id="timer1"></div>
+    </div>
+
+    <div class="card">
+      <h2>🏍️ Comprar uma Moto</h2>
+      <div class="timer" id="timer2"></div>
+    </div>
+
+    <div class="card">
+      <h2>🏠 Ter Casa Própria</h2>
+      <div class="timer" id="timer3"></div>
+    </div>
+
+    <div class="card">
+      <h2>✈️ Viajar para Fora</h2>
+      <div class="timer" id="timer4"></div>
+    </div>
+
+  </div>
+
+  <script>
+    function atualizarTimer(id, dataFinal) {
+      const agora = new Date().getTime();
+      const distancia = dataFinal - agora;
+
+      if (distancia < 0) {
+        document.getElementById(id).innerHTML = "Conquistado! 🎉";
+        return;
+      }
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      document.getElementById(id).innerHTML =
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    // Defina datas realistas para seus objetivos
+    const objetivo1 = new Date("2027-01-01").getTime(); // faculdade
+    const objetivo2 = new Date("2028-06-01").getTime(); // moto
+    const objetivo3 = new Date("2032-01-01").getTime(); // casa
+    const objetivo4 = new Date("2029-01-01").getTime(); // viagem
+
+    setInterval(() => {
+      atualizarTimer("timer1", objetivo1);
+      atualizarTimer("timer2", objetivo2);
+      atualizarTimer("timer3", objetivo3);
+      atualizarTimer("timer4", objetivo4);
+    }, 1000);
+  </script>
+
+</body>
+</html>
